@@ -20,17 +20,17 @@ export class AdminController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.adminService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.adminService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto) {
-    return this.adminService.update(+id, updateAdminDto);
+  update(@Param('id') id: number, @Body() updateAdminDto: UpdateAdminDto) {
+    return this.adminService.update(id, updateAdminDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.adminService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.adminService.remove(id);
   }
 }

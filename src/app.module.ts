@@ -5,6 +5,8 @@ import { AdminModule } from './admin/admin.module';
 import { Admin } from './admin/admin.model';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
+import { ProductModule } from './product/product.module';
+import { Product } from './product/product.model';
 
 
 @Module({
@@ -19,12 +21,13 @@ import { User } from './user/user.model';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [Admin,User],
+      models: [Admin,User,Product],
       autoLoadModels: true,
       logging: false,
     }),
     AdminModule,
     UserModule,
+    ProductModule,
     
   ],
 })
