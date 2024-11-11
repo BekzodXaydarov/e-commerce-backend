@@ -7,6 +7,9 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
 import { ProductModule } from './product/product.module';
 import { Product } from './product/product.model';
+import { CategoryModule } from './category/category.module';
+import { Category } from './category/category.model';
+import { DiscountModule } from './discount/discount.module';
 
 
 @Module({
@@ -21,13 +24,15 @@ import { Product } from './product/product.model';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [Admin,User,Product],
+      models: [Admin,User,Product,Category],
       autoLoadModels: true,
       logging: false,
     }),
     AdminModule,
     UserModule,
     ProductModule,
+    CategoryModule,
+    DiscountModule,
     
   ],
 })

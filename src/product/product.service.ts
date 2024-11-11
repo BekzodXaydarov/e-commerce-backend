@@ -8,10 +8,10 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductService {
   constructor(
     @InjectModel(Product) private readonly productRepository: typeof Product,
-  ) {}
+  ) { }
 
   async create(createProductDto: CreateProductDto) {
-    if (createProductDto.star >= 5) {
+    if (createProductDto.star > 5) {
       throw new HttpException(
         'Yulduz 5ta dan past Bo`lishi kerak',
         HttpStatus.BAD_REQUEST,
@@ -39,7 +39,7 @@ export class ProductService {
     if (!product) {
       throw new HttpException('Id notog`ri', HttpStatus.BAD_REQUEST);
     }
-     
+
     if (updateProductDto.star >= 5) {
       throw new HttpException(
         'Yulduz 5ta dan past Bo`lishi kerak',
@@ -51,5 +51,17 @@ export class ProductService {
       { where: { id: id }, returning: true },
     );
     return newProduct;
+  }
+  async remove(id: number) {
+    const product = await this.productRepository.findByPk(id)
+
+    if (!product) {
+      throw new HttpException('Id notog`ri', HttpStatus.BAD_REQUEST);
+    }
+
+    await this.productRepository.destroy({
+      where: { id: id }
+    })
+    return "Product deleted"
   }
 }
